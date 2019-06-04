@@ -1,0 +1,469 @@
+:root{
+  --red: #e23030;
+}
+
+body,html{
+  background: var(--red);
+  font-family: arial;
+}
+
+.background{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-image: url("https://github.com/thekaway404/Uno-Game/blob/master/img/background.jpg?raw=true");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.mesa{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+}
+
+.card{
+  background-image: url("https://github.com/thekaway404/Uno-Game/blob/master/img/UNO_cards_deck.png?raw=true");
+  width: 50px;
+  height: 76px;
+  position: relative;
+  margin-left: 10px;
+  display: inline-block;
+  transition: 0.2s;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+-o-transform-style: preserve-3d;
+-ms-transform-style: preserve-3d;
+transform-style: preserve-3d;
+-webkit-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-moz-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-o-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-ms-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+}
+
+.card .after{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://github.com/thekaway404/Uno-Game/blob/master/img/tras.png?raw=true");
+  background-size: cover;
+  transition: 0.4s;
+}
+
+.card:hover{
+  transform: scale(2);
+  transform: translate3d(-23px, -20px, 0px) scale(2.1);
+  z-index: 100;
+}
+
+.deck{
+  transition: 0.4s;
+}
+
+.card{
+  background-position: 0px 0px;
+}
+
+.nothover:hover{
+  -webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+-o-transform-style: preserve-3d;
+-ms-transform-style: preserve-3d;
+transform-style: preserve-3d;
+-webkit-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-moz-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-o-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-ms-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9) !important;
+}
+
+.showcardsbot{
+ -webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+-o-transform-style: preserve-3d;
+-ms-transform-style: preserve-3d;
+transform-style: preserve-3d;
+-webkit-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 0px);
+-moz-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 0px);
+-o-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 0px);
+-ms-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 0px);
+transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 0px) translate(-30%) !important;
+  left: 30% !important;
+}
+
+.showcardsbot .card:hover{
+   -webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+-o-transform-style: preserve-3d;
+-ms-transform-style: preserve-3d;
+transform-style: preserve-3d;
+-webkit-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-moz-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-o-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+-ms-transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9);
+transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 0px) scale(1.9) !important;
+  z-index: 0 !important;
+}
+
+.card1{
+  background-position: -50px 0px;
+}
+
+.card2{
+  background-position: -100px 0px;
+}
+
+.card3{
+  background-position: -150px 0px;
+}
+
+.card4{
+  background-position: -200px 0px;
+}
+
+.card5{
+  background-position: -250px 0px;
+}
+
+.card6{
+  background-position: -300px 0px;
+}
+
+.card7{
+  background-position: -350px 0px;
+}
+
+.card8{
+  background-position: -400px 0px;
+}
+
+.card9{
+  background-position: -450px 0px;
+}
+
+.card10{
+  background-position: -500px 0px;
+}
+
+.card11{
+  background-position: -550px 0px;
+}
+
+.card12{
+  background-position: -600px 0px;
+}
+
+.card13{
+  background-position: -650px 0px;
+}
+
+.cardy0{
+  background-position: 0px -75px;
+}
+
+.cardy1{
+  background-position: -50px -75px;
+}
+
+.cardy2{
+  background-position: -100px -75px;
+}
+
+.cardy3{
+  background-position: -150px -75px;
+}
+
+.cardy4{
+  background-position: -200px -75px;
+}
+
+.cardy5{
+  background-position: -250px -75px;
+}
+
+.cardy6{
+  background-position: -300px -75px;
+}
+
+.cardy7{
+  background-position: -350px -75px;
+}
+
+.cardy8{
+  background-position: -400px -75px;
+}
+
+.cardy9{
+  background-position: -450px -75px;
+}
+
+.cardy10{
+  background-position: -500px -75px;
+}
+
+.cardy11{
+  background-position: -550px -75px;
+}
+
+.cardy12{
+  background-position: -600px -75px;
+}
+
+.cardy13{
+  background-position: -650px -75px;
+}
+
+.cardg0{
+  background-position: 0px -150px;
+}
+
+.cardg1{
+  background-position: -50px 151px;
+}
+
+.cardg2{
+  background-position: -100px 151px;
+}
+
+.cardg3{
+  background-position: -150px 151px;
+}
+
+.cardg4{
+  background-position: -200px 151px;
+}
+
+.cardg5{
+  background-position: -250px 151px;
+}
+
+.cardg6{
+  background-position: -300px 151px;
+}
+
+.cardg7{
+  background-position: -350px 151px;
+}
+
+.cardg8{
+  background-position: -400px 151px;
+}
+
+.cardg9{
+  background-position: -450px 151px;
+}
+
+.cardg10{
+  background-position: -500px 151px;
+}
+
+.cardg11{
+  background-position: -550px 151px;
+}
+
+.cardg12{
+  background-position: -600px 151px;
+}
+
+.cardg13{
+  background-position: -50px 151px;
+}
+
+.cardgg4{
+  background-position: -100px 151px;
+}
+
+.cardg15{
+  background-position: -150px 151px;
+}
+
+.cardg5{
+  background-position: -250px 151px;
+}
+
+.cardg6{
+  background-position: -300px 151px;
+}
+
+.cardg7{
+  background-position: -350px 151px;
+}
+
+.cardg8{
+  background-position: -400px 151px;
+}
+
+.cardg9{
+  background-position: -450px 151px;
+}
+
+.cardg10{
+  background-position: -500px 151px;
+}
+
+.cardg11{
+  background-position: -550px 151px;
+}
+
+.cardg12{
+  background-position: -600px 151px;
+}
+
+.cardg13{
+  background-position: -650px 151px;
+}
+
+.cardb0{
+  background-position: 0px 375px;
+}
+
+.cardb1{
+  background-position: -50px 76px;
+}
+
+.cardb2{
+  background-position: -100px 76px;
+}
+
+.cardb3{
+  background-position: -150px 76px;
+}
+
+.cardb4{
+  background-position: -200px 76px;
+}
+
+.cardb5{
+  background-position: -250px 76px;
+}
+
+.cardb6{
+  background-position: -300px 76px;
+}
+
+.cardb7{
+  background-position: -350px 76px;
+}
+
+.cardb8{
+  background-position: -400px 76px;
+}
+
+.cardb9{
+  background-position: -450px 76px;
+}
+
+.cardb10{
+  background-position: -500px 76px;
+}
+
+.cardb11{
+  background-position: -550px 76px;
+}
+
+.cardb12{
+  background-position: -600px 76px;
+}
+
+.cardb13{
+  background-position: -650px 76px;
+}
+
+.cardmore4{
+  background-position: -650px 151px;
+}
+
+.cardchange{
+  background-position: -1349px 0px;
+}
+
+
+.showcards{
+  position: absolute;
+  bottom: 40px;
+  width: auto;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.showcardsbot{
+  position: absolute;
+  top: 40px;
+  width: auto;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.getname{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.80);
+  left: 0;
+  top: 0;
+  z-index: 5000;
+  transition: 1s;
+}
+
+.getname .who{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.getname .who input{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 22px;
+  border-radius: 20px;
+}
+
+.getname .who button{
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+  left: 10px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  background: #ff3c41;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.who h1{
+  color: #fff;
+}
+
+.bloqueio{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.40);
+  z-index: -1;
+  left: 0px;
+  top: 0px;
+  transition: 1s;
+  opacity: 0;
+}
+
+.bloqueio .msg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  transition: 0.5s;
+}
