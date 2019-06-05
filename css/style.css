@@ -5,6 +5,7 @@
 body,html{
   background: var(--red);
   font-family: arial;
+  overflow: hidden;
 }
 
 .background{
@@ -24,6 +25,10 @@ body,html{
   transform: translate(-50%, -50%);
   width: auto;
   height: auto;
+}
+
+.mesa .card{
+  position: absolute;
 }
 
 .card{
@@ -95,7 +100,7 @@ transform-style: preserve-3d;
 -o-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 0px);
 -ms-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 0px);
 transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 0px) translate(-30%) !important;
-  left: 30% !important;
+  left: 0% !important;
 }
 
 .showcardsbot .card:hover{
@@ -112,55 +117,55 @@ transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 
   z-index: 0 !important;
 }
 
-.card1{
+.cardr1{
   background-position: -50px 0px;
 }
 
-.card2{
+.cardr2{
   background-position: -100px 0px;
 }
 
-.card3{
+.cardr3{
   background-position: -150px 0px;
 }
 
-.card4{
+.cardr4{
   background-position: -200px 0px;
 }
 
-.card5{
+.cardr5{
   background-position: -250px 0px;
 }
 
-.card6{
+.cardr6{
   background-position: -300px 0px;
 }
 
-.card7{
+.cardr7{
   background-position: -350px 0px;
 }
 
-.card8{
+.cardr8{
   background-position: -400px 0px;
 }
 
-.card9{
+.cardr9{
   background-position: -450px 0px;
 }
 
-.card10{
+.cardr10{
   background-position: -500px 0px;
 }
 
-.card11{
+.cardr11{
   background-position: -550px 0px;
 }
 
-.card12{
+.cardr12{
   background-position: -600px 0px;
 }
 
-.card13{
+.cardr13{
   background-position: -650px 0px;
 }
 
@@ -466,4 +471,19 @@ transform: rotateX(30deg) rotateY(0deg) rotateZ(-10deg) translate3d(-20px, 0px, 
   transform: translate(-50%, -50%);
   color: #fff;
   transition: 0.5s;
+}
+
+.pularvez{
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #555;
+  color: #fff;
+  z-index: 10000000;
+  cursor: pointer;
+  background-image: url('https://pngimage.net/wp-content/uploads/2018/05/dont-icon-png-1.png');
+  background-size: cover;
 }

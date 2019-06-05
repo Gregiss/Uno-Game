@@ -1,6 +1,6 @@
 var vez = 0;
 
-var left = -50;
+var left = 0;
 
 var zindex = 10000;
 
@@ -112,16 +112,18 @@ var botcard1 = [
 $(document).ready(function(){
   console.log("Ready");
   getcards();
-  
   getmesacard();
   pegarjogador();
   botgetcards(1);
   jogar();
+  pularvez();
+  botjogar();
 });
 
+
 function getcards(){
-  var min=0; 
-  var max=13;  
+  var min=1; 
+  var max=10;  
   var random = 0;
   var minc=0; 
   var maxc=4;
@@ -130,10 +132,10 @@ function getcards(){
   var color = "";
   
   for(var i = 0; i <= 6; i++){
-    console.log(i);
+    
     randomcolor = Math.floor(Math.random() * (+maxc - +minc)) + +minc;
     if(randomcolor == 0){
-      aux = "";
+      aux = "r";
       color = "red";
     } else if(randomcolor == 1){
       aux = "y";
@@ -146,28 +148,34 @@ function getcards(){
       color = "blue";
     }
     random = Math.floor(Math.random() * (+max - +min)) + +min;
-    $(".showcards .before").before("<div class='card deck card"+ aux + random + "' data-id='"+ i + "' data-color='"+ color +"' data-cartaid='"+ random +"' data-aux='"+ aux +"'></div>");
+    console.log(i);
+      if(deck[i].card == random){
+        random = Math.floor(Math.random() * (+max - +min)) + +min;
+      }
+
+    $(".showcards .before").before("<div class='card deck card"+ aux + random + " carta"+ i + aux + random + "' data-id='"+ i + "' data-color='"+ color +"' data-cartaid='"+ random +"' data-aux='"+ aux +"'></div>");
     deck[i].card = random;
     deck[i].color = color;
     deck[i].aux = aux;
-    console.log(deck[i].color+deck[i].card);  
     }
   }
 
 function botgetcards(botid){
-  var min=0; 
-  var max=13;  
+  var min=1; 
+  var max=10;  
   var random = 0;
   var minc=0; 
   var maxc=4;
   var randomcolor = 0;
   var aux = "";
   var color = "";
-  
+  var b = 0;
+
   for(var i = 0; i <= 6; i++){
+
     randomcolor = Math.floor(Math.random() * (+maxc - +minc)) + +minc;
     if(randomcolor == 0){
-      aux = "";
+      aux = "r";
       color = "red";
     } else if(randomcolor == 1){
       aux = "y";
@@ -179,12 +187,17 @@ function botgetcards(botid){
       aux = "b";
       color = "blue";
     }
+    
     random = Math.floor(Math.random() * (+max - +min)) + +min;
-    $(".showcardsbot .before").before("<div class='card card"+ aux + random + " botcard"+ aux + random + "' data-id='"+ (i + 1) + "' data-color='"+ color +"'><div class='after'></div></div>");
+    console.log(i);
+      if(botcard1[i].card == random){
+        random = Math.floor(Math.random() * (+max - +min)) + +min;
+      }
+    
+    $(".showcardsbot .before").before("<div class='card card"+ aux + random + " carta"+ i + aux + random +"' data-id='"+ (i + 1) + "' data-color='"+ color +"'><div class='after'></div></div>");
     botcard1[i].card = random;
     botcard1[i].color = color;
     botcard1[i].aux = aux;
-    console.log(botcard1[i].color+botcard1[i].card);  
     }
   }
 
@@ -199,7 +212,7 @@ function getmesacard(){
   var color = "";
   randomcolor = Math.floor(Math.random() * (+maxc - +minc)) + +minc;
   if(randomcolor == 0){
-      aux = "";
+      aux = "r";
       color = "red";
     } else if(randomcolor == 1){
       aux = "y";
@@ -220,64 +233,109 @@ function getmesacard(){
 
 function atualizarmesa(aux, card){
   //Mesa
-  $(".mesa").html("<div class='before'><div class='card card"+ aux + card + "' data-id="+ card +"></div></div>");
+  left+= 22;
+  $(".mesa .before").before("<div style='left:" + left + "px;' class='card card"+ aux + card + "' data-id="+ card +"></div>");
 }
 
 function jogar(){
   if(vez == 0){
-  $(".deck").click(function(){
+    $(".deck").click(function(){
     var id = $(this).data("id");
     var color = $(this).data("color");
     var cartaid = $(this).data("cartaid");
     var auxcarta = $(this).data("aux");
+    var totaldecartajogada = 0;
+    console.log(color);
       if(color == mesa.color){
         mesa.card = cartaid;
         mesa.aux = auxcarta;
         mesa.color = color;
-        atualizarmesa(auxcarta, cartaid);
-        zindex++;
-        $(".showcards .card" + auxcarta + cartaid).hide();
-        left++;
-        zindex++;
-        deck.shift(id);
-        vez = 1;
-      } else if(cartaid == mesa.card){
-        mesa.card = cartaid;
-        mesa.aux = auxcarta;
-        mesa.color = color;
+        console.log(mesa.card);
+        console.log(mesa.aux);
+        console.log(mesa.color);
         atualizarmesa(auxcarta, cartaid);
         zindex++;
         $(this).hide();
         left++;
-        deck.shift(id);
+        zindex++;
+        cartaverificaid = 0;
+        verificarcartajogada(cartaid);
+        totaldecartajogada = 1;
         vez = 1;
       }
-    vez = 1;
-    verificarcartajogada(mesa.card);
-    botjogar(color, cartaid);
+      else if(totaldecartajogada == 0){
+      if(cartaid == mesa.card){
+        mesa.card = cartaid;
+        mesa.aux = auxcarta;
+        mesa.color = color;
+        console.log(mesa.card);
+        console.log(mesa.aux);
+        console.log(mesa.color);
+        atualizarmesa(auxcarta, cartaid);
+        zindex++;
+        $(this).hide();
+        left++;
+        verificarcartajogada(cartaid);
+        vez = 1;
+        }
+      }
     });
   }
 }
 
-function botjogar(color, cartanumero){
-  if(vez == 0){
-    console.log("Bot Bloqueado");
-  }
-  else if(vez == 1){
-    if(mesa.card == 12){
-      console.log("Bot comprou duas carta");
-      bloqueio("Você fez o bot comprar 2 cartas, é você novamente");
+function botjogar(){
+  setInterval(function(){
+    setTimeout(function(){
+  if(vez == 1){
+    var totalDeCartaJogada = 0;
+    for(var i = 0; i < botcard1.length;i++){
+      console.log(i);
+      if(botcard1[i].color == mesa.color){
+        if(totalDeCartaJogada == 0){
+        mesa.card = botcard1[i].card;
+        mesa.color = botcard1[i].color;
+        mesa.aux = botcard1[i].aux;
+        atualizarmesa(botcard1[i].aux, botcard1[i].card);
+        $(".showcardsbot .carta"+ i + botcard1[i].aux + botcard1[i].card).hide();
+        console.log("Bot tem a cor " + mesa.color);
+        totalDeCartaJogada = 1;
+        vez = 0;
+        break;
+        }
+      }
+      if(i >= botcard1.length){
+        vez = 0;
+        break;
+      }
+    }
+    if(totalDeCartaJogada == 0){
+    for(var i = 0; i < botcard1.length;i++){
+      console.log(i);
+      if(botcard1[i].card == mesa.card){
+        mesa.card = botcard1[i].card;
+        mesa.color = botcard1[i].color;
+        mesa.aux = botcard1[i].aux;
+        atualizarmesa(botcard1[i].aux, botcard1[i].card);
+        $(".showcardsbot .carta"+ i + botcard1[i].aux + botcard1[i].card).hide();
+        console.log("Bot tem o numero " + mesa.color);
+        totalDeCartaJogada = 1;
+        vez = 0;
+        break;
+      } else{
+        bloqueio("Bot pulou a vez, e teve que comprar uma carta");
+       var newCard = {"card" : 0, "color" : "blue", "aux" : "b"};
+       botcard1.push(newCard);
         var min=0; 
-        var max=13;  
+        var max=10;  
         var random = 0;
         var minc=0; 
         var maxc=4;
         var randomcolor = 0;
         var aux = "";
         var color = "";
-      randomcolor = Math.floor(Math.random() * (+maxc - +minc)) + +minc;
-          if(randomcolor == 0){
-            aux = "";
+        randomcolor = Math.floor(Math.random() * (+maxc - +minc)) + +minc;
+        if(randomcolor == 0){
+            aux = "r";
             color = "red";
           } else if(randomcolor == 1){
             aux = "y";
@@ -289,60 +347,25 @@ function botjogar(color, cartanumero){
             aux = "b";
             color = "blue";
           }
+        for(var i = 0; i <= 6; i++){
           random = Math.floor(Math.random() * (+max - +min)) + +min;
-        var newCard = [{'card' : botcard1.length + 1, 'color' : color, aux : aux}];
-        botcard1.push(newCard);
-        botcard1.push(newCard);
-        $(".showcardsbot .before").before("<div class='card deck card"+ aux + random + "' card"+ aux + random + "' data-id='"+ deck.length + "' data-color='"+ color +"'><div class='after'></div></div>");
-      $(".showcardsbot .before").before("<div class='card deck card"+ aux + random + "' card"+ aux + random + "' data-id='"+ deck.length + "' data-color='"+ color +"'><div class='after'></div></div>");
-      mesa.card = 0;
-      atualizarmesa(mesa.aux, 0);
-    } else{
-    console.log(botcard1.length);
-    var cartaid = 0;
-    while(cartaid <= botcard1.length){
-      console.log("Contando for " + cartaid);
-      if(color == mesa.color){
-        mesa.card = botcard1[cartaid].card;
-        mesa.aux = botcard1[cartaid].aux;
-        mesa.color = botcard1[cartaid].color;
-        atualizarmesa(botcard1[cartaid].aux, botcard1[cartaid].card);
-        console.log("Bot jogou " + botcard1[cartaid].aux + botcard1[cartaid].card)
-        console.log("Bot pode jogar, porque a carta é da mesma cor ou do mesmo nipe");
-        zindex++;
-        $(".showcardsbot .botcard" + botcard1[cartaid].aux + botcard1[cartaid].card).hide();
-        console.log("hidden card");
-        left++;
-        zindex++;
-        botcard1.shift(cartaid);
-        vez = 0;
-        jogar();
-        break;
-      } else{
-        if(cartanumero == mesa.card){
-        mesa.card = botcard1[cartaid].card;
-        mesa.aux = botcard1[cartaid].aux;
-        mesa.color = botcard1[cartaid].color;
-        atualizarmesa(botcard1[cartaid].aux, botcard1[cartaid].card);
-        zindex++;
-        $(this).hide();
-        left++;
-        botcard1.shift(cartaid);
-        vez = 0;
-        break;
+              console.log(i);
+                if(botcard1[i].card == random){
+                  random = Math.floor(Math.random() * (+max - +min)) + +min;
+                }
         }
-        }
-      cartaid++;
-      if(cartaid >= botcard1.length){
-        break;
+          $(".showcardsbot .before").before("<div class='card carta"+ (i + 1) + aux + random + "' data-id='"+ (i + 1) + "' data-color='"+ color +"'><div class='after'></div></div>");
+       vez = 0;
+       break;
       }
-      }
-      verificarcartajogada(mesa.card);
-      vez = 0;
-      jogar();
     }
-  }
 }
+}
+}, 2000);
+}, 1000);
+}
+     
+  
 
 function pegarjogador(){
   $(".who button").click(function(){
@@ -361,46 +384,6 @@ function pegarjogador(){
   });
 }
 
-function verificarsetemcarta(){
-        if(deck[i].color == mesa.color){
-          break;
-        } else if(deck[i].card == mesa.card){
-          break;
-        } else{
-        console.log("Você não tem a carta");
-        var min=0; 
-        var max=13;  
-        var random = 0;
-        var minc=0; 
-        var maxc=4;
-        var randomcolor = 0;
-        var aux = "";
-        var color = "";
-          if(randomcolor == 0){
-            aux = "";
-            color = "red";
-          } else if(randomcolor == 1){
-            aux = "y";
-            color = "yellow";
-          } else if(randomcolor == 2){
-            aux = "g";
-            color = "green";
-          } else if(randomcolor == 3){
-            aux = "b";
-            color = "blue";
-          }
-          random = Math.floor(Math.random() * (+max - +min)) + +min;
-          randomcolor = Math.floor(Math.random() * (+maxc - +minc)) + +minc;
-        var newCard = [{'card' : botcard1.length + 1, 'color' : color, aux : aux}];
-        deck.push(newCard);
-          deck.push(newCard);
-          $(document).ready(function(){
-        $(".showcards .before").before("<div class='card deck card"+ aux + random + "' card"+ aux + random + "' data-id='"+ deck.length + "' data-color='"+ color +"'></div>");
-          });
-        }
-
-}
-
 function verificarcartajogada(cartaid){
   if(cartaid == 10){ //Bloqueia
     if(vez == 0){
@@ -416,17 +399,6 @@ function verificarcartajogada(cartaid){
       vez = 0;
     }
     console.log("Você bloqueiou");
-  } else if(cartaid == 12){ //Volta pra mim e faz comprar duas carta
-    if(vez == 0){
-      vez = 0;
-      mesa.card = 0;
-      atualizarmesa(mesa.aux, 0);
-    } else{
-      vez = 1;
-    }
-    var comprar2 = true;
-  } else{
-    vez = 1;
   }
 }
 
@@ -438,4 +410,13 @@ function bloqueio(messagem){
     $(".bloqueio").css("opacity", 0);
     $(".bloqueio").css("z-index", -100);
   }, 3000);
+}
+
+function pularvez(){
+  if(vez == 0){
+  $(".pularvez").click(function(){
+    vez = 1;
+    bloqueio("Você pulou sua vez :c");
+  });
+  }
 }
